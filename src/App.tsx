@@ -1,25 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MainLayout from './layout';
+import Home from './views/home';
+import History from './views/history';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation
+} from "react-router-dom";
+import { useEffect, useState } from 'react';
+
+function Wrapper() {
+  const location = useLocation();
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [transitionStage, setTransitionStage] = useState("fadeIn");
+
+  useEffect(() => {
+    if (location !== displayLocation) setTransitionStage("fadeOut");
+  }, [location, displayLocation]);
+  return (
+    <div
+      className={`${transitionStage} grow`}
+      onAnimationEnd={() => {
+        if (transitionStage === "fadeOut") {
+          setTransitionStage("fadeIn");
+          setDisplayLocation(location);
+        }
+      }}>
+      <Routes location={displayLocation}>
+        <Route path='/' element={<Home />} />
+        <Route path='/:expression_param' element={<Home />} />
+        <Route path='/history' element={<History />} />
+      </Routes>
+    </div>
+
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainLayout >
+      <Router>
+        <Wrapper />
+      </Router>
+    </MainLayout >
   );
 }
 
