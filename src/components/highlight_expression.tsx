@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ExpressionObject, ExpressionElements } from "@/api"
+import { ThemeContext } from "@/hook/theme_context";
 
 interface IProps {
     components: ExpressionObject[]
@@ -17,9 +18,11 @@ function calcStyle(type: ExpressionElements): string {
 }
 
 const Highlighter = ({ components }: IProps) => {
-
+    const { theme } = useContext(ThemeContext);
     return (
-        <div className="flex justify-end items-center transition-all">
+        <div
+            className={"flex justify-end items-center transition-all "
+                + (theme === "light" ? "text-gray-700" : "text-gray-100")}>
             {components.map(item =>
                 <div
                     key={item.id}

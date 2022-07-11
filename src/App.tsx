@@ -9,6 +9,7 @@ import {
   useLocation
 } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import { ThemeProvider } from './hook/theme_context';
 
 function Wrapper() {
   const location = useLocation();
@@ -39,11 +40,13 @@ function Wrapper() {
 
 function App() {
   return (
-    <MainLayout >
-      <Router>
-        <Wrapper />
-      </Router>
-    </MainLayout >
+    <ThemeProvider>
+      <MainLayout >
+        <Router>
+          <Wrapper />
+        </Router>
+      </MainLayout >
+    </ThemeProvider>
   );
 }
 

@@ -16,6 +16,12 @@ type ExpressionObject = {
     id: string
 }
 
+/* Evaluate expression in string form 
+* @params: 
+    token: string : the input expression value
+* @return: string : the out string as the result of input expression
+*/
+
 function calculate(token: string) {
     try {
         const result = evaluate(token);
@@ -24,6 +30,12 @@ function calculate(token: string) {
         return ""
     }
 }
+
+/* Split expression to special pieces
+* @params: 
+    token: string : the input expression value
+* @return: ExpressionObject[] : the array of special piece
+*/
 
 function getExpressionTree(token: string): ExpressionObject[] {
     var i = 0;
@@ -48,6 +60,13 @@ function getExpressionTree(token: string): ExpressionObject[] {
     return stack;
 }
 
+
+/* Generate key string with given length
+* @params: 
+    length: number : the length of the key
+* @return: string : the key need to be generated
+*/
+
 function randomKey(length: number) {
     const pattern = "0123456789";
 
@@ -58,6 +77,12 @@ function randomKey(length: number) {
     return answer;
 }
 
+/* Push an expression to memory
+* @params: 
+    expression: string : the input expression need to be written 
+* @return: void
+*/
+
 function writeResultToMemory(expression: string): void {
     const oldMemory = getExpressionFromMemory();
 
@@ -65,9 +90,19 @@ function writeResultToMemory(expression: string): void {
     localStorage.setItem("calculations", JSON.stringify(oldMemory));
 }
 
+/* Clear all expressions that written in memory
+* @params: none
+* @return: void
+*/
+
 function clearAllExpressionInMemory(): void {
     localStorage.removeItem("calculations");
 }
+
+/* retrieve all expressions from memory
+* @params: none
+* @return: Array<MemoriedExpression>: the array of expression object stored in memory
+*/
 
 function getExpressionFromMemory(): Array<MemoriedExpression> {
     return (JSON.parse(localStorage.getItem("calculations") || "[]") || []) as Array<MemoriedExpression>;
@@ -83,4 +118,7 @@ export {
     getExpressionFromMemory
 };
 
-export type { ExpressionObject, MemoriedExpression };
+export type {
+    ExpressionObject,
+    MemoriedExpression
+};

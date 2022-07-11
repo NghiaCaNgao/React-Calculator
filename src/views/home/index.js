@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Numpad from "./components/numpad"
 import ResultScreen from "./components/result_screen";
 import ThemeModeSelector from "./components/theme_mode_selector"
@@ -8,6 +8,7 @@ import { ReactComponent as HistoryIcon } from "@/assets/icon/clock.svg"
 import "@/api/prototype";
 import { calculate, writeResultToMemory } from "@/api";
 import { Link, useParams } from "react-router-dom";
+import { ThemeContext } from "@/hook/theme_context";
 
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
     const [expression, setExpression] = useState(expression_param || "");
     const [result, setResult] = useState(calculate(expression_param || ""));
     const [_content, _setContent] = useState("");
-
+    const { theme } = useContext(ThemeContext);
 
     function handlePress(content) {
         if (content === "()") {
@@ -52,7 +53,6 @@ export default function Home() {
     }
 
     function handleKey(e) {
-        // console.log(e);
         const allowSet = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", "Backspace", "Enter"]);
         if (allowSet.has(e.key)) handlePress(e.key);
     }
@@ -67,7 +67,7 @@ export default function Home() {
             <div className="p-1 px-4">
                 <Link to="/history" className="block w-fit">
                     <RoundedButton>
-                        <HistoryIcon stroke="#374151" strokeWidth="2.5px" />
+                        <HistoryIcon stroke={(theme === "light") ? "#374151" : "#bbbbbb"} strokeWidth="2.5px" />
                     </RoundedButton>
                 </Link>
             </div>

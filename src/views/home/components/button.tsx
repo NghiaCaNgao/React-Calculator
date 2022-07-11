@@ -1,4 +1,5 @@
-import { FunctionComponent, SVGProps } from "react"
+import { ThemeContext } from "@/hook/theme_context";
+import { FunctionComponent, SVGProps, useContext } from "react"
 
 interface IProps {
     content: string,
@@ -10,15 +11,36 @@ interface IProps {
 const top_buttons = new Set(["()", "%"]);
 const functional_buttons = new Set(["AC", "()", "%", "/", "*", "+", "-"]);
 
+function setTheme(theme: string, content: string) {
+    let style = "";
+
+    if (content === "=") {
+        style += " text-white ";
+        if (theme === "light") style += " bg-green-300 hover:bg-green-200 "
+        else style += "bg-green-500 hover:bg-green-400"
+    }
+    else if (content === "AC") style += " text-red-500 "
+    else if (top_buttons.has(content)) style += " text-red-400 ";
+    else if (theme === "light") style += " bg-gray-100 text-gray-700 hover:bg-slate-200 "
+    else style += " bg-gray-900 text-gray-100 hover:bg-slate-800 ";
+
+    if (functional_buttons.has(content)) {
+        if (theme === "light") style += " hover:bg-red-200 ";
+        else style += " hover:bg-slate-800 ";
+    }
+
+
+
+    return style;
+}
+
 export default function ButtonPad({ content, id, Icon, onPress }: IProps) {
+    const { theme } = useContext(ThemeContext);
+    
     return (
         <div
-            className={"bg-gray-100 text-gray-700 rounded-2xl flex justify-center items-center font-SFPro text-xl cursor-pointer hover:bg-slate-200 transition-all select-none "
-                + (content === "=" ? "text-white bg-green-300 hover:bg-green-200 " : " ")
-                + (content === "AC" ? "text-red-500 " : " ")
-                + (top_buttons.has(content) ? "text-red-400 " : " ")
-                + (functional_buttons.has(content) ? "hover:bg-red-200 " : " ")
-            }
+            className={"rounded-2xl flex justify-center items-center font-SFPro text-xl cursor-pointer transition-all select-none "
+                + setTheme(theme, content)}
             key={id}
             onClick={() => { onPress(content) }}>
             {(!Icon)
@@ -29,8 +51,10 @@ export default function ButtonPad({ content, id, Icon, onPress }: IProps) {
                         : content === "."
                             ? "none"
                             : "#f87171"}
+                    fill={(theme === "dark" && content === ".") ? "#262f3f" : "none"}
                     strokeWidth="2.5px"
+                    className="transition-all"
                 />}
-        </div>
+        </div >
     )
 }

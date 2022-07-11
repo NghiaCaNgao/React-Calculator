@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ButtonPad from "./button";
 import { randomKey } from "@/api";
 
@@ -8,6 +8,7 @@ import { ReactComponent as MultiplyIcon } from "@/assets/icon/close.svg";
 import { ReactComponent as DivideIcon } from "@/assets/icon/divide.svg";
 import { ReactComponent as ResetIcon } from "@/assets/icon/reset.svg";
 import { ReactComponent as DotIcon } from "@/assets/icon/record.svg";
+import { ThemeContext } from "@/hook/theme_context";
 
 
 const contents = [
@@ -39,8 +40,10 @@ interface IProps {
 }
 
 const Numpad = React.memo(({ onPress }: IProps) => {
+    const { theme } = useContext(ThemeContext);
     return (
-        <div className="rounded-t-3xl bg-gray-50 w-full h-3/5 grid grid-cols-4 gap-4 p-5 flex-none">
+        <div className={"rounded-t-3xl w-full h-3/5 grid grid-cols-4 gap-4 p-5 flex-none transition-all "
+            + (theme === "light" ? "bg-gray-50" : "bg-gray-900")}>
             {contents.map(item =>
                 <ButtonPad
                     content={item.content}
