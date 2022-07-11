@@ -13,8 +13,8 @@ export default function HistoryItem({ expression }: IProps) {
     return (
         <Link
             to={"/" + expression}
-            className={"border-r-4 border-blue-300 flex flex-col items-end p-2 m-2 cursor-pointer "
-                + (theme === "light" ? "hover:bg-slate-50" : "hover:bg-slate-700")}>
+            className={"border-r-4 border-blue-300 flex flex-col items-end p-2 m-2 cursor-pointer transition-all rounded-l-lg "
+                + (theme === "light" ? "hover:bg-slate-100" : "hover:bg-slate-800")}>
             <div className="font-SFPro text-3xl text-gray-600 select-none">
                 <Highlighter components={getExpressionTree(expression)} />
             </div>
