@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Highlighter from "../../../components/highlight_expression"
-import { getExpressionTree } from "../../../api"
+import Highlighter from "@/components/highlight_expression"
+import { getExpressionTree } from "@/api"
 
 interface IProps {
     expression: string,

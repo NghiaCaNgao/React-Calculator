@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import wifi_logo from "../../assets/icon/wifi.jpg"
-import pin_logo from "../../assets/icon/pin.png"
-import signal_logo from "../../assets/icon/signal level.png"
+import wifi_logo from "@/assets/icon/wifi.jpg"
+import pin_logo from "@/assets/icon/pin.png"
+import signal_logo from "@/assets/icon/signal level.png"
 
 function getCurrentTime() {
     const now = new Date();

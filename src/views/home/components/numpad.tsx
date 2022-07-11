@@ -1,13 +1,13 @@
 import React from "react";
 import ButtonPad from "./button";
-import { randomKey } from "../../../api";
+import { randomKey } from "@/api";
 
-import { ReactComponent as PlusIcon } from "../../../assets/icon/plus.svg";
-import { ReactComponent as MinusIcon } from "../../../assets/icon/minus.svg";
-import { ReactComponent as MultiplyIcon } from "../../../assets/icon/close.svg";
-import { ReactComponent as DivideIcon } from "../../../assets/icon/divide.svg";
-import { ReactComponent as ResetIcon } from "../../../assets/icon/reset.svg";
-import { ReactComponent as DotIcon } from "../../../assets/icon/record.svg";
+import { ReactComponent as PlusIcon } from "@/assets/icon/plus.svg";
+import { ReactComponent as MinusIcon } from "@/assets/icon/minus.svg";
+import { ReactComponent as MultiplyIcon } from "@/assets/icon/close.svg";
+import { ReactComponent as DivideIcon } from "@/assets/icon/divide.svg";
+import { ReactComponent as ResetIcon } from "@/assets/icon/reset.svg";
+import { ReactComponent as DotIcon } from "@/assets/icon/record.svg";
 
 
 const contents = [

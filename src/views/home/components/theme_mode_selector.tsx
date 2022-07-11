@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { ReactComponent as LightIcon } from "../../../assets/icon/light.svg"
-import { ReactComponent as DarkIcon } from "../../../assets/icon/moon.svg"
+import { ReactComponent as LightIcon } from "@/assets/icon/light.svg"
+import { ReactComponent as DarkIcon } from "@/assets/icon/moon.svg"
 
 export default function ThemeModeSelector() {
     const [themeMode, setThemeMode] = useState("light");

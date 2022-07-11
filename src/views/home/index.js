@@ -2,11 +2,11 @@ import { useState } from "react";
 import Numpad from "./components/numpad"
 import ResultScreen from "./components/result_screen";
 import ThemeModeSelector from "./components/theme_mode_selector"
-import { ReactComponent as HistoryIcon } from "../../assets/icon/clock.svg"
+import RoundedButton from "@/components/rounded_button";
+import { ReactComponent as HistoryIcon } from "@/assets/icon/clock.svg"
 
-import { calculate, writeResultToMemory } from "../../api";
-import "../../api/prototype";
-import RoundedButton from "../../components/rounded_button";
+import "@/api/prototype";
+import { calculate, writeResultToMemory } from "@/api";
 import { Link, useParams } from "react-router-dom";
 
 
@@ -52,14 +52,14 @@ export default function Home() {
     }
 
     function handleKey(e) {
-        console.log(e);
+        // console.log(e);
         const allowSet = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "*", "/", "Backspace", "Enter"]);
         if (allowSet.has(e.key)) handlePress(e.key);
     }
 
     return (
         <div
-            onKeyUp={handleKey}
+            onKeyDown={handleKey}
             tabIndex="-1"
             className="flex flex-col h-full outline-none">
             <ThemeModeSelector />

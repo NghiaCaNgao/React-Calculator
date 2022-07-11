@@ -1,5 +1,5 @@
 import React from "react";
-import { ExpressionObject, ExpressionElements } from "../api"
+import { ExpressionObject, ExpressionElements } from "@/api"
 
 interface IProps {
     components: ExpressionObject[]

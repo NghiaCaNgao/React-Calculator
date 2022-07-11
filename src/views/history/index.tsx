@@ -1,7 +1,7 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import HistoryItem from "./components/history_row"
-import { clearAllExpressionInMemory, getExpressionFromMemory } from "../../api"
-import { useState } from "react"
+import { clearAllExpressionInMemory, getExpressionFromMemory } from "@/api"
 
 export default function History() {
     const [historyList, setHistoryList] = useState(getExpressionFromMemory());

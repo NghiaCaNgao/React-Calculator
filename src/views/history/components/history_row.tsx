@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { calculate, getExpressionTree } from "../../../api";
-import Highlighter from "../../../components/highlight_expression";
+import Highlighter from "@/components/highlight_expression";
+import { calculate, getExpressionTree } from "@/api";
 
 interface IProps {
     expression: string
